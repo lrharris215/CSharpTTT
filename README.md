@@ -1,7 +1,7 @@
 Welcome to Tic Tac Toe!
 
 About:
-   - This Tic Tac Toe game was created to help me learn C#. At this time, it can be run in the console. 
+   - This Tic Tac Toe game was created to help me learn C#. The tests are written using [xUnit](https://xunit.net/). At this time, it can be run in the console. 
 
 Setup:
 - [Install dotnet](https://dotnet.microsoft.com/en-us/download). This project uses version 5.0.
