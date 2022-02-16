@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using TicTacToe;
 using Xunit;
 
 namespace TicTacToe.Test
@@ -19,7 +18,7 @@ namespace TicTacToe.Test
             Display.Print(testString);
            
 
-            Assert.Equal(output.ToString(), testString);
+            Assert.Equal(testString, output.ToString());
 
         }
     }
