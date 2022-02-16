@@ -9,4 +9,6 @@ Setup:
 - ```dotnet run```
 
 Instructions:
-- Fill in later. 
+- To run, cd into project folder, enter this command ``` dotnet run --project TicTacToe ```
+- To run tests, ``` dotnet test ```
+
