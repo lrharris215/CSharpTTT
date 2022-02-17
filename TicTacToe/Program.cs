@@ -6,7 +6,10 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to Tic Tac Toe!");
+            Display.Print(Constants.WelcomeMessage);
+            Board board = new();
+
+            Display.Print(Formatter.FormatBoard(board));
         }
     }
 }
