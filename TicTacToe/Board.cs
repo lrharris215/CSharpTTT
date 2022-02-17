@@ -5,7 +5,7 @@ namespace TicTacToe
     public class Board
     {
 
-        public List<char> Cells { get; }
+        public List<char> Cells { get; private set; }
         
 
         public Board()
