@@ -10,7 +10,7 @@ namespace TicTacToe.Test
         [InlineData(2)]
         public void FindPosition_Returns_Cell_Value_At_Given_Position(int value)
         {
-            Board b = new Board(3);
+            Board b = new();
 
             Assert.Equal(b.Cells[value - 1], b.FindPosition(value));
         }

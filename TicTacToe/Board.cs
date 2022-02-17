@@ -7,11 +7,11 @@ namespace TicTacToe
 
        public List<char> Cells { get; }
         
-       public int Size;
+       
 
-        public Board(int size)
+        public Board()
         {
-            Size = size;
+            
             Cells = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
         }
