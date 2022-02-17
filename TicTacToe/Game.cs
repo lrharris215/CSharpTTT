@@ -32,6 +32,8 @@ namespace TicTacToe
                 string input = Receiver.GetInput();
                 
                 IsValid = Validator.IsValidMove(input, out position);
+
+                //TODO: Error handling
                 
             } while (!IsValid);
 

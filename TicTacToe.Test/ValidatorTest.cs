@@ -24,5 +24,20 @@ namespace TicTacToe.Test
             bool IsValid = Validator.IsValidMove(input, out _);
             Assert.False(IsValid);
         }
+
+        [Theory]
+        [InlineData("1")]
+        [InlineData("6")]
+        [InlineData("9")]
+        [InlineData("4")]
+        public void IsValidMove_ReturnsTrue_IfInputIs_Between1And9_And_SetsPosition(string input)
+        {
+
+            int position;
+            bool IsValid = Validator.IsValidMove(input, out position);
+            Assert.True(IsValid);
+            Assert.Equal(int.Parse(input), position);
+
+        }
     }
 }

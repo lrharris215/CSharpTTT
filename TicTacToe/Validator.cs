@@ -6,14 +6,17 @@ namespace TicTacToe
     {
         public static bool IsValidMove(string input, out int position)
         {
-            bool isValid = int.TryParse(input, out position);
+            return IsValidInput(input, out position) && IsValidPosition(position);
+        }
 
-            if (!isValid)
-            {
-                Display.Print("That is not a valid input! Please enter a number between 1 and 9!\n");
-            }
+        private static bool IsValidInput(string input, out int position)
+        {
+            return int.TryParse(input, out position); 
+        }
 
-            return isValid;
+        private static bool IsValidPosition(int position)
+        {
+            return (position > 0 && position < 10);
         }
     }
 }
