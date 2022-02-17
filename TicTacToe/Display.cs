@@ -8,5 +8,6 @@ namespace TicTacToe
         {
             Console.Write(input);
         }
+
     }
 }
