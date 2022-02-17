@@ -19,5 +19,10 @@ namespace TicTacToe
         {
             return Cells[position - 1];
         }
+
+        public void AddMark(int position, char mark)
+        {
+            Cells[position - 1] = mark;
+        }
     }
 }
