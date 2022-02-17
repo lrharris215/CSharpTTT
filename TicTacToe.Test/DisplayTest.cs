@@ -6,18 +6,18 @@ namespace TicTacToe.Test
 {
     public class DisplayTest
     {
-        [Fact]
-        public void Print_Gives_Input_to_Output_Function()
+        [Theory]
+        [InlineData("Testinggg")]
+        [InlineData("Lots of outputs!!!! \n\n\n")]
+        [InlineData("Everything outputs to the console!")]
+        public void Print_Gives_Input_to_Output_Function(string testString)
         { 
             
             var output = new StringWriter();
             Console.SetOut(output);
 
-            string testString = "Testtesttest";
-
             Display.Print(testString);
            
-
             Assert.Equal(testString, output.ToString());
 
         }
