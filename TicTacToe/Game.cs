@@ -24,7 +24,7 @@ namespace TicTacToe
 
         public void TakeTurn(Player player)
         {
-            Display.Print($"It is {player.Name}'s turn! Please enter a number between 1 and 9!\n");
+            Display.Print(Constants.PlayerTurn(player.Name));
             int position = Receiver.GetPlayerMove();
             Board.AddMark(position, player.Mark);
             Display.Print(Formatter.FormatBoard(Board));
