@@ -19,5 +19,15 @@ namespace TicTacToe.Test
             Assert.Equal(Receiver.GetInput(), input);
 
         }
+
+        [Fact]
+        public void GetPlayerMove_ReturnsAValidPosition()
+        {
+            string input = "3";
+            var consoleInput = new StringReader(input);
+            Console.SetIn(consoleInput);
+
+            Assert.Equal(int.Parse(input), Receiver.GetPlayerMove());
+        }
     }
 }

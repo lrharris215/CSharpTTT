@@ -18,7 +18,8 @@ namespace TicTacToe.Test
              |       |
          7   |   8   |   9
              |       |
-        "; 
+
+"; 
             Board board = new();
 
             Assert.Equal(formattedBoard, Formatter.FormatBoard(board));

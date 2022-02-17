@@ -24,20 +24,8 @@ namespace TicTacToe
 
         public void TakeTurn(Player player)
         {
-            bool IsValid = false;
-            int position;
-
-            do
-            {
-                string input = Receiver.GetInput();
-                
-                IsValid = Validator.IsValidMove(input, out position);
-
-                //TODO: Error handling
-                
-            } while (!IsValid);
-
-
+            Display.Print($"It is {player.Name}'s turn! Please enter a number between 1 and 9!\n");
+            int position = Receiver.GetPlayerMove();
             Board.AddMark(position, player.Mark);
             Display.Print(Formatter.FormatBoard(Board));
         }

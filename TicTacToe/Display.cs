@@ -9,5 +9,12 @@ namespace TicTacToe
             Console.Write(input);
         }
 
+        public static void PrintError(string input)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(input);
+            Console.ResetColor();
+        }
+
     }
 }
