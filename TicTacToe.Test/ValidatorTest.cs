@@ -16,8 +16,8 @@ namespace TicTacToe.Test
         [InlineData("H")]
         public void IsValidMove_ReturnsFalse_IfInputIs_NAN(string input)
         {
-            bool IsValid = Validator.IsValidMove(input, out _);
-            Assert.False(IsValid);
+            bool isValid = Validator.IsValidMove(input, out _);
+            Assert.False(isValid);
         }
 
         [Theory]
@@ -27,8 +27,8 @@ namespace TicTacToe.Test
         [InlineData("-4")]
         public void IsValidMove_ReturnsFalse_IfInputIs_LessThan1_OrGreaterThan9(string input)
         {
-            bool IsValid = Validator.IsValidMove(input, out _);
-            Assert.False(IsValid);
+            bool isValid = Validator.IsValidMove(input, out _);
+            Assert.False(isValid);
         }
 
         [Theory]
@@ -40,8 +40,8 @@ namespace TicTacToe.Test
         {
 
             int position;
-            bool IsValid = Validator.IsValidMove(input, out position);
-            Assert.True(IsValid);
+            bool isValid = Validator.IsValidMove(input, out position);
+            Assert.True(isValid);
             Assert.Equal(int.Parse(input), position);
 
         }
@@ -53,9 +53,9 @@ namespace TicTacToe.Test
             int position = 5;
             Validator.Board.AddMark(position, 'T');
 
-            bool IsValid = Validator.IsValidMove(position.ToString(), out _);
+            bool isValid = Validator.IsValidMove(position.ToString(), out _);
 
-            Assert.False(IsValid);
+            Assert.False(isValid);
 
         }
     }
