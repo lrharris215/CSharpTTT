@@ -9,11 +9,13 @@ namespace TicTacToe.Test
         [Fact]
        public void TakeTurn_PlacesAValidMark_OnTheBoard()
         {
-            Board board = new();
-            Player player1 = new("P1", 'X');
-            Player player2 = new("P2", 'O');
+            TestBoard board = new TestBoard();
+            TestPlayer player1 = new TestPlayer("P1", 'L');
+            TestPlayer player2 = new TestPlayer("P2", 'T');
 
             Game game = new Game(board, player1, player2);
+
+            //TODO: Figure out a way to mock the receiver, validator
 
             var input = new StringReader("3");
             Console.SetIn(input);
@@ -27,4 +29,28 @@ namespace TicTacToe.Test
 
         }
     }
+
+    public class TestBoard : Board
+    {
+        public override char FindPosition(int position)
+        {
+            return 'X';
+        }
+
+        public override void AddMark(int position, char mark)
+        {
+
+        }
+    }
+
+    public class TestPlayer : Player
+    {
+        public override char Mark { get; }
+
+        public TestPlayer(string name, char mark) : base(name, mark)
+        {
+            Mark = 'Z';
+        }
+    }
+
 }

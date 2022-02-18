@@ -15,12 +15,12 @@ namespace TicTacToe
 
         }
 
-        public char FindPosition(int position)
+        public virtual char FindPosition(int position)
         {
             return Cells[position - 1];
         }
 
-        public void AddMark(int position, char mark)
+        public virtual void AddMark(int position, char mark)
         {
             Cells[position - 1] = mark;
         }
