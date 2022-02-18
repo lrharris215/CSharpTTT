@@ -15,7 +15,8 @@ namespace TicTacToe
              |       |
          {board.FindPosition(7)}   |   {board.FindPosition(8)}   |   {board.FindPosition(9)}
              |       |
-        ";
+
+";
         }
     }
 }

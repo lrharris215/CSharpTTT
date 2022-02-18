@@ -10,9 +10,21 @@ namespace TicTacToe.Test
         [InlineData(2)]
         public void FindPosition_Returns_Cell_Value_At_Given_Position(int value)
         {
-            Board b = new();
+            Board board = new();
 
-            Assert.Equal(b.Cells[value - 1], b.FindPosition(value));
+            Assert.Equal(board.Cells[value - 1], board.FindPosition(value));
+        }
+
+        [Theory]
+        [InlineData(1, 'X')]
+        [InlineData(6, 'O')]
+        public void AddMark_Places_Mark_on_Specified_Cell(int position, char mark)
+        {
+            Board board = new();
+
+            board.AddMark(position, mark);
+
+            Assert.Equal(board.FindPosition(position), mark);
         }
 
     } 

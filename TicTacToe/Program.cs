@@ -6,10 +6,11 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            Display.Print(Constants.WelcomeMessage);
-            Board board = new();
+            Board board = new Board();
+            Player playerOne = new Player("Player One", 'X');
+            Game game = new Game(board, playerOne);
 
-            Display.Print(Formatter.FormatBoard(board));
+            game.Play();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace TicTacToe
     public class Board
     {
 
-        public List<char> Cells { get; }
+        public List<char> Cells { get; private set; }
         
 
         public Board()
@@ -18,6 +18,11 @@ namespace TicTacToe
         public char FindPosition(int position)
         {
             return Cells[position - 1];
+        }
+
+        public void AddMark(int position, char mark)
+        {
+            Cells[position - 1] = mark;
         }
     }
 }
