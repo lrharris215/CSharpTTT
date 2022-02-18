@@ -5,12 +5,15 @@ namespace TicTacToe
     {
         Board Board;
         Player PlayerOne;
+        Player PlayerTwo;
         
 
-        public Game(Board board, Player playerOne)
+        public Game(Board board, Player playerOne, Player playerTwo)
         {
             Board = board;
             PlayerOne = playerOne;
+            PlayerTwo = playerTwo;
+            Validator.Board = Board;
         }
 
         public void Play()
@@ -20,6 +23,7 @@ namespace TicTacToe
             Display.Print(Formatter.FormatBoard(Board));
 
             TakeTurn(PlayerOne);
+            TakeTurn(PlayerTwo);
         }
 
         public void TakeTurn(Player player)

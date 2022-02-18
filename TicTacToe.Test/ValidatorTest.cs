@@ -4,6 +4,12 @@ namespace TicTacToe.Test
 {
     public class ValidatorTest
     {
+        // Fixtures are set in the Constructor. A new ValidatorTest is created everytime a test is run. 
+        public ValidatorTest()
+        {          
+            Validator.Board = new Board();
+        }
+
         [Theory]
         [InlineData("three")]
         [InlineData("Computer")]
@@ -37,6 +43,20 @@ namespace TicTacToe.Test
             bool IsValid = Validator.IsValidMove(input, out position);
             Assert.True(IsValid);
             Assert.Equal(int.Parse(input), position);
+
+        }
+
+        [Fact]
+        public void IsValidMove_ReturnsFalse_IfSpaceIsAlreadyTaken()
+        {
+
+            
+            int position = 5;
+            Validator.Board.AddMark(position, 'T');
+
+            bool IsValid = Validator.IsValidMove(position.ToString(), out _);
+
+            Assert.False(IsValid);
 
         }
     }

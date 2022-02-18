@@ -8,7 +8,8 @@ namespace TicTacToe
         {
             Board board = new Board();
             Player playerOne = new Player("Player One", 'X');
-            Game game = new Game(board, playerOne);
+            Player playerTwo = new Player("Player Two", 'O');
+            Game game = new Game(board, playerOne, playerTwo);
 
             game.Play();
         }
