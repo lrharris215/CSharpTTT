@@ -11,5 +11,7 @@ namespace TicTacToe
             Name = name;
             Mark = mark;
         }
+
+        public Player() { }
     }
 }

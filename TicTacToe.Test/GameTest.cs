@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Moq;
 using Xunit;
 
 namespace TicTacToe.Test
@@ -7,15 +8,17 @@ namespace TicTacToe.Test
     public class GameTest
     {
         [Fact]
-       public void TakeTurn_PlacesAValidMark_OnTheBoard()
+        public void TakeTurn_PlacesAValidMark_OnTheBoard()
         {
-            TestBoard board = new TestBoard();
-            TestPlayer player1 = new TestPlayer("P1", 'L');
-            TestPlayer player2 = new TestPlayer("P2", 'T');
 
-            Game game = new Game(board, player1, player2);
+            var mockBoard = Mock.Of<Board>();
+            var mockPlayer = Mock.Of<Player>();
 
-            //TODO: Figure out a way to mock the receiver, validator
+            Mock.Get(mockBoard).SetupSequence(mb => mb.FindPosition(3)).Returns('3').Returns('M').Returns('M');
+            
+            Mock.Get(mockPlayer).Setup(mp => mp.Mark).Returns('M');
+
+            Game game = new Game(mockBoard, mockPlayer, mockPlayer);
 
             var input = new StringReader("3");
             Console.SetIn(input);
@@ -23,33 +26,10 @@ namespace TicTacToe.Test
             var output = new StringWriter();
             Console.SetOut(output);
 
-            game.TakeTurn(player1);
+            game.TakeTurn(mockPlayer);
 
-            Assert.Equal(board.FindPosition(3), player1.Mark);
+            Assert.Equal(mockPlayer.Mark, mockBoard.FindPosition(3));
 
-        }
-    }
-
-    public class TestBoard : Board
-    {
-        public override char FindPosition(int position)
-        {
-            return 'X';
-        }
-
-        public override void AddMark(int position, char mark)
-        {
-
-        }
-    }
-
-    public class TestPlayer : Player
-    {
-        public override char Mark { get; }
-
-        public TestPlayer(string name, char mark) : base(name, mark)
-        {
-            Mark = 'Z';
         }
     }
 
