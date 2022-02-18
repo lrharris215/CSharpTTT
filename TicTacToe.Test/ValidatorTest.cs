@@ -49,8 +49,7 @@ namespace TicTacToe.Test
         [Fact]
         public void IsValidMove_ReturnsFalse_IfSpaceIsAlreadyTaken()
         {
-
-            
+ 
             int position = 5;
             Validator.Board.AddMark(position, 'T');
 
