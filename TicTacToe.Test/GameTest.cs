@@ -23,11 +23,8 @@ namespace TicTacToe.Test
 
             mockValidator.Setup(mv => mv.IsValidMove(position.ToString(), out position)).Returns(true);
 
-           
-            // MockPlayer has the entered mark. 
             mockPlayer.Setup(mp => mp.Mark).Returns(mark);
 
-            // Setting Mock here to verify AddMark has been called
             mockBoard.Setup(mb => mb.AddMark(position, mark));
 
             Game game = new Game(mockBoard.Object, mockValidator.Object, mockPlayer.Object, mockPlayer.Object);

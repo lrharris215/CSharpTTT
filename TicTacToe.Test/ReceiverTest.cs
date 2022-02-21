@@ -24,18 +24,15 @@ namespace TicTacToe.Test
         [Fact]
         public void GetPlayerMove_ReturnsAValidPosition()
         {
-            Console.WriteLine("here");
+            
             Mock<Validator> mockVal = new();
 
-
-            Console.WriteLine("here");
             string input = "3";
             var consoleInput = new StringReader(input);
             Console.SetIn(consoleInput);
 
             int position = 3;
-            Console.WriteLine("here");
-
+        
             mockVal.Setup(mv => mv.IsValidMove(input, out position)).Returns(true);
 
             Assert.Equal(int.Parse(input), Receiver.GetPlayerMove(mockVal.Object));
