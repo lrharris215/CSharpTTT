@@ -3,12 +3,12 @@ namespace TicTacToe
 {
     public class Receiver
     {
-
-       public static int GetPlayerMove()
+       
+       public static int GetPlayerMove(Validator validator)
         {
             string input = GetInput();
             int position;
-            while (!Validator.IsValidMove(input, out position))
+            while (!validator.IsValidMove(input, out position))
             {
                 Display.PrintError(Constants.InvalidMove);
                 input = GetInput();

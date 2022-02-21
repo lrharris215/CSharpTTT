@@ -16,20 +16,21 @@ namespace TicTacToe.Test
 
             Mock<Board> mockBoard = new Mock<Board>();
             Mock<Player> mockPlayer = new Mock<Player>();
+            Mock<Validator> mockValidator = new Mock<Validator>();
 
             //For some reason Convert.ToChar() was breaking the test
             char positionChar = position.ToString().ToCharArray()[0];
 
-            //Need to mock different answers: returns the <positionChar> for the validation, then returns <mark> for formatting the board
-            mockBoard.SetupSequence(mb => mb.FindPosition(position)).Returns(positionChar).Returns(mark);
+            mockValidator.Setup(mv => mv.IsValidMove(position.ToString(), out position)).Returns(true);
 
+           
             // MockPlayer has the entered mark. 
             mockPlayer.Setup(mp => mp.Mark).Returns(mark);
 
             // Setting Mock here to verify AddMark has been called
             mockBoard.Setup(mb => mb.AddMark(position, mark));
 
-            Game game = new Game(mockBoard.Object, mockPlayer.Object, mockPlayer.Object);
+            Game game = new Game(mockBoard.Object, mockValidator.Object, mockPlayer.Object, mockPlayer.Object);
 
             var input = new StringReader(position.ToString());
             Console.SetIn(input);
@@ -41,7 +42,7 @@ namespace TicTacToe.Test
 
             //Verifies that AddMark has been called once with these arguments
             mockBoard.Verify(mb => mb.AddMark(position, mark), Times.Once());
-            
+
 
         }
     }
