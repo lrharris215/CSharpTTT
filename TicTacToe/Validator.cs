@@ -6,6 +6,7 @@ namespace TicTacToe
     public class Validator
     {
         public static Board Board { get; set; }
+
         public static bool IsValidMove(string input, out int position)
         {
             return IsValidInput(input, out position) && IsValidPosition(position) && IsPositionEmpty(position);

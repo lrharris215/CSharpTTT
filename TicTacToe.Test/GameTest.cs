@@ -11,14 +11,19 @@ namespace TicTacToe.Test
         public void TakeTurn_PlacesAValidMark_OnTheBoard()
         {
 
-            var mockBoard = Mock.Of<Board>();
-            var mockPlayer = Mock.Of<Player>();
+            Mock<Board> mockBoard = new Mock<Board>();
+            Mock<Player> mockPlayer = new Mock<Player>();
+           
+            //Need to mock different answers: returns 3 for the validation, then returns M for formatting the board
+            mockBoard.SetupSequence(mb => mb.FindPosition(3)).Returns('3').Returns('M');
 
-            Mock.Get(mockBoard).SetupSequence(mb => mb.FindPosition(3)).Returns('3').Returns('M').Returns('M');
-            
-            Mock.Get(mockPlayer).Setup(mp => mp.Mark).Returns('M');
+            // MockPlayer has mark M
+            mockPlayer.Setup(mp => mp.Mark).Returns('M');
 
-            Game game = new Game(mockBoard, mockPlayer, mockPlayer);
+            // Setting Mock here to verify AddMark has been called
+            mockBoard.Setup(mb => mb.AddMark(3, 'M'));
+
+            Game game = new Game(mockBoard.Object, mockPlayer.Object, mockPlayer.Object);
 
             var input = new StringReader("3");
             Console.SetIn(input);
@@ -26,9 +31,11 @@ namespace TicTacToe.Test
             var output = new StringWriter();
             Console.SetOut(output);
 
-            game.TakeTurn(mockPlayer);
+            game.TakeTurn(mockPlayer.Object);
 
-            Assert.Equal(mockPlayer.Mark, mockBoard.FindPosition(3));
+            //Verify's AddMark has been called once with these arguments
+            mockBoard.Verify(mb => mb.AddMark(3, 'M'), Times.Once());
+            
 
         }
     }
