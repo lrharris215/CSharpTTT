@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 namespace TicTacToe
 {
-    public class Board
+    public class Board : IBoard
     {
 
         public List<char> Cells { get; private set; }

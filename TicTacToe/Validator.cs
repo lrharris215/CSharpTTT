@@ -5,9 +5,9 @@ namespace TicTacToe
 {
     public class Validator
     {
-        public Board Board { get; set; }
+        public IBoard Board { get; set; }
 
-        public Validator(Board board)
+        public Validator(IBoard board)
         {
             Board = board;
         }

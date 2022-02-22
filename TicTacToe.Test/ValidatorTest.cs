@@ -9,13 +9,13 @@ namespace TicTacToe.Test
         // Fixtures are set in the Constructor. A new ValidatorTest is created everytime a test is run.
        
         Validator validator;
-        Mock<Board> mockBoard;
+        MockBoard mockBoard;
 
 
         public ValidatorTest()
         {
-            mockBoard = new Mock<Board>();
-            validator = new Validator(mockBoard.Object);
+            mockBoard = new MockBoard();
+            validator = new Validator(mockBoard);
         }
 
         [Theory]
@@ -49,8 +49,7 @@ namespace TicTacToe.Test
         public void IsValidMove_ReturnsTrue_IfInputIs_Between1And9_And_SetsPosition(string input)
         {
 
-            mockBoard.Setup(mb => mb.FindPosition(int.Parse(input))).Returns(input.ToCharArray()[0]);
-
+           
             int position;
             bool isValid = validator.IsValidMove(input, out position);
             Assert.True(isValid);
@@ -64,8 +63,6 @@ namespace TicTacToe.Test
 
             int position = 5;
             validator.Board.AddMark(position, 'T');
-
-            mockBoard.Setup(mb => mb.FindPosition(position)).Returns('T');
 
             bool isValid = validator.IsValidMove(position.ToString(), out _);
 

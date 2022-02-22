@@ -3,7 +3,7 @@ namespace TicTacToe
 {
     public class Game
     {
-        private readonly Board Board;
+        private readonly IBoard Board;
         private readonly Player PlayerOne;
         private readonly Player PlayerTwo;
         private readonly Validator Validator;
@@ -11,7 +11,7 @@ namespace TicTacToe
         public Player ActivePlayer { get; set; }
 
 
-        public Game(Board board, Validator validator, Player playerOne, Player playerTwo)
+        public Game(IBoard board, Validator validator, Player playerOne, Player playerTwo)
         {
             Board = board;
             PlayerOne = playerOne;
