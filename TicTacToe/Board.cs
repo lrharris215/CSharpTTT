@@ -17,23 +17,20 @@ namespace TicTacToe
 
         }
 
-        public virtual char FindPosition(int position)
+        public char FindPosition(int position)
         {
             return Cells[position - 1];
         }
 
-        public virtual void AddMark(int position, char mark)
+        public void AddMark(int position, char mark)
         {
             Cells[position - 1] = mark;
         }
 
         public bool IsRowFull()
         {
-            List<char> row1 = new List<char> { FindPosition(1), FindPosition(2), FindPosition(3) };
-            List<char> row2 = new List<char> { FindPosition(4), FindPosition(5), FindPosition(6) };
-            List<char> row3 = new List<char> { FindPosition(7), FindPosition(8), FindPosition(9) };
 
-            List<List<char>> allRows = new List<List<char>> { row1, row2, row3 };
+            List<List<char>> allRows = FindRows();
 
             foreach(List<char> row in allRows)
             {
@@ -46,6 +43,15 @@ namespace TicTacToe
 
             return false;
             
+        }
+
+        private List<List<char>> FindRows()
+        {
+            List<char> row1 = new() { FindPosition(1), FindPosition(2), FindPosition(3) };
+            List<char> row2 = new() { FindPosition(4), FindPosition(5), FindPosition(6) };
+            List<char> row3 = new() { FindPosition(7), FindPosition(8), FindPosition(9) };
+
+            return new List<List<char>> { row1, row2, row3 };
         }
     }
 }

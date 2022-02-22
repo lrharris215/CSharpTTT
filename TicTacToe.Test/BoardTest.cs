@@ -5,12 +5,18 @@ namespace TicTacToe.Test
 {
     public class BoardTest
     {
+        Board board;
+
+        public BoardTest()
+        {
+            board = new Board();
+        }
+
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
         public void FindPosition_Returns_Cell_Value_At_Given_Position(int value)
         {
-            Board board = new();
 
             Assert.Equal(board.Cells[value - 1], board.FindPosition(value));
         }
@@ -20,7 +26,6 @@ namespace TicTacToe.Test
         [InlineData(6, 'O')]
         public void AddMark_Places_Mark_on_Specified_Cell(int position, char mark)
         {
-            Board board = new();
 
             board.AddMark(position, mark);
 
@@ -31,36 +36,36 @@ namespace TicTacToe.Test
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        public void IsRowFull_ReturnsTrue_IfAnyRowsHave3OfAKind(int rowNumber)
+        public void IsRowFull_ReturnsTrue_IfAnyRows_HaveThreeOfAKind(int rowNumber)
         {
-            Board board = new();
 
-            FillRow(board, rowNumber);
+            FillRow(rowNumber);
             
             Assert.True(board.IsRowFull());
         }
 
         [Fact]
-        public void IsRowRull_ReturnsFalse_IfNoRowsHave3OfAKind()
+        public void IsRowRull_ReturnsFalse_IfNoRows_HaveThreeOfAKind()
         {
-            Board board = new();
 
             Assert.False(board.IsRowFull());
         }
 
-        private void FillRow(IBoard board, int rowNumber)
+        private void FillRow(int rowNumber)
         {
             if(rowNumber == 1)
             {
                 board.AddMark(1, 'X');
                 board.AddMark(2, 'X');
                 board.AddMark(3, 'X');
-            }else if (rowNumber == 2)
+            }
+            else if (rowNumber == 2)
             {
                 board.AddMark(4, 'X');
                 board.AddMark(5, 'X');
                 board.AddMark(6, 'X');
-            }else if (rowNumber == 3)
+            }
+            else if (rowNumber == 3)
             {
                 board.AddMark(7, 'X');
                 board.AddMark(8, 'X');
