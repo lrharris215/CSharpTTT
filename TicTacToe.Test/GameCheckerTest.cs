@@ -5,10 +5,15 @@ namespace TicTacToe.Test
 {
     public class GameCheckerTest
     {
+        MockBoard board;
+
+        public GameCheckerTest()
+        {
+            board = new MockBoard();
+        }
         [Fact]
         public void GameChecker_IsGameWon_ReturnsFalse_IfBoardIsEmpty()
-        {
-            IBoard board = new MockBoard();
+        { 
             Assert.False(GameChecker.IsGameWon(board));
         }
 
@@ -16,7 +21,7 @@ namespace TicTacToe.Test
         [Fact]
         public void GameChecker_IsGameWon_ReturnsTrue_IfThreeInARow()
         {
-            MockBoard board = new MockBoard();
+           
             board.FillRow();
 
             Assert.True(GameChecker.IsGameWon(board));
@@ -25,7 +30,7 @@ namespace TicTacToe.Test
         [Fact]
         public void GameChecker_IsGameWon_ReturnsTrue_IfThreeInAColumn()
         {
-            MockBoard board = new MockBoard();
+
             board.FillCol();
 
             Assert.True(GameChecker.IsGameWon(board));
@@ -34,10 +39,32 @@ namespace TicTacToe.Test
         [Fact]
         public void GameChecker_IsGameWon_ReturnsTrue_IfThreeInADiagonal()
         {
-            MockBoard board = new MockBoard();
             board.FillDiag();
 
             Assert.True(GameChecker.IsGameWon(board));
+        }
+
+        [Fact]
+        public void GameChecker_IsGameTied_ReturnsTrue_IfGameIsTied()
+        {
+            board.FillTie();
+
+            Assert.True(GameChecker.IsGameTied(board));
+        }
+
+        [Fact]
+        public void GameChecker_IsGameTied_ReturnsFalse_IfGameIsNotTied()
+        {
+            board.FillRow();
+
+            Assert.False(GameChecker.IsGameTied(board));
+        }
+
+        [Fact]
+        public void GameChecker_IsGameWon_ReturnsFalse_IfGameIsNotWon_AndBoardIsFull()
+        {
+            board.FillTie();
+            Assert.False(GameChecker.IsGameWon(board));
         }
     }
 }

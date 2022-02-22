@@ -85,6 +85,27 @@ namespace TicTacToe.Test
             Assert.False(board.IsDiagonalAWinner());
         }
 
+        [Fact]
+        public void IsBoardFull_ReturnsTrue_IfBoardIsFull()
+        {
+            FillBoard();
+            Assert.True(board.IsFull());
+        }
+
+        [Fact]
+        public void IsBoardFull_ReturnsFalse_IfBoardIsNotFull()
+        {
+            board.AddMark(1, 'X');
+            Assert.False(board.IsFull());
+        }
+
+        [Fact]
+        public void IsBoardFull_ReturnsFalse_IfBoardIsEmpty()
+        { 
+            Assert.False(board.IsFull());
+        }
+
+        // helper functions;
 
         private void FillRow(int rowNumber)
         {
@@ -144,6 +165,19 @@ namespace TicTacToe.Test
                 board.AddMark(5, 'X');
                 board.AddMark(7, 'X');
             }
+        }
+
+        private void FillBoard()
+        {
+            board.AddMark(1, 'X');
+            board.AddMark(2, 'O');
+            board.AddMark(3, 'X');
+            board.AddMark(4, 'O');
+            board.AddMark(5, 'X');
+            board.AddMark(6, 'O');
+            board.AddMark(7, 'O');
+            board.AddMark(8, 'X');
+            board.AddMark(9, 'O');
         }
 
     } 

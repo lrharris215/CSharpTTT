@@ -12,5 +12,7 @@
         bool IsColumnAWinner();
 
         bool IsDiagonalAWinner();
+
+        bool IsFull();
     }
 }

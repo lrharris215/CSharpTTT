@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace TicTacToe
 {
     public class Board : IBoard
@@ -47,6 +48,15 @@ namespace TicTacToe
         {
             List<List<char>> allDiagonals = FindDiagonals();
             return IsThreeOfAKind(allDiagonals);
+        }
+
+        public bool IsFull()
+        {
+            if(Cells.All(cell => cell == 'X' || cell == 'O'))
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool IsThreeOfAKind(List<List<char>> cellSets)

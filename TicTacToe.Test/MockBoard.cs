@@ -11,6 +11,7 @@ namespace TicTacToe.Test
         public bool Is3InARow;
         public bool Is3InACol;
         public bool Is3InADiag;
+        public bool IsBoardFull;
 
         public MockBoard() 
         {
@@ -20,6 +21,7 @@ namespace TicTacToe.Test
             Is3InARow = false;
             Is3InACol = false;
             Is3InADiag = false;
+            IsBoardFull = false;
             
         }
 
@@ -50,6 +52,11 @@ namespace TicTacToe.Test
             return Is3InADiag;
         }
 
+        public bool IsFull()
+        {
+            return IsBoardFull;
+        }
+
         internal void FillRow()
         {
             Is3InARow = true;
@@ -63,6 +70,11 @@ namespace TicTacToe.Test
         internal void FillDiag()
         {
             Is3InADiag = true;
+        }
+
+        internal void FillTie()
+        {
+            IsBoardFull = true;
         }
 
     }

@@ -9,6 +9,11 @@ namespace TicTacToe
             return IsHorizontalWin(board) || IsVerticalWin(board) || IsDiagonalWin(board);
         }
 
+        public static bool IsGameTied(IBoard board)
+        {
+            return board.IsFull() && !IsGameWon(board);
+        }
+
         private static bool IsHorizontalWin(IBoard board)
         {
             return board.IsRowAWinner();

@@ -53,13 +53,14 @@ namespace TicTacToe
 
         public void EndGame()
         {
+            //TODO: maybe use the out from before to declare winner?
             SwitchPlayers();
             Display.Print($"Congratulations! {ActivePlayer.Name} has won the game!\n");
         }
 
         private bool IsGameOver()
         {
-            return GameChecker.IsGameWon(Board);
+            return GameChecker.IsGameTied(Board) || GameChecker.IsGameWon(Board);
         }
 
        
