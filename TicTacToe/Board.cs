@@ -27,30 +27,33 @@ namespace TicTacToe
             Cells[position - 1] = mark;
         }
 
-        public bool IsRowFull()
+        public bool IsRowAWinner()
         {
 
             List<List<char>> allRows = FindRows();
 
-            foreach(List<char> row in allRows)
-            {
-               if(!row.Any(cell => cell != row[0]))
-                {
-                    return true;
-                }
-               
-            }
-
-            return false;
+            return IsThreeOfAKind(allRows);
             
         }
 
-        public bool IsColumnFull()
+        public bool IsColumnAWinner()
         {
             List<List<char>> allColumns = FindCols();
-            foreach(List<char> column in allColumns)
+            return IsThreeOfAKind(allColumns);
+        }
+
+
+        public bool IsDiagonalAWinner()
+        {
+            List<List<char>> allDiagonals = FindDiagonals();
+            return IsThreeOfAKind(allDiagonals);
+        }
+
+        private bool IsThreeOfAKind(List<List<char>> cellSets)
+        {
+            foreach(List<char> cellSet in cellSets)
             {
-                if(!column.Any(cell => cell!= column[0]))
+                if(!cellSet.Any(cell => cell!= cellSet[0]))
                 {
                     return true;
                 }
@@ -75,5 +78,14 @@ namespace TicTacToe
 
             return new List<List<char>> { col1, col2, col3 };
         }
+
+        private List<List<char>> FindDiagonals()
+        {
+            List<char> col1 = new() { FindPosition(1), FindPosition(5), FindPosition(9) };
+            List<char> col2 = new() { FindPosition(3), FindPosition(5), FindPosition(7) };
+
+            return new List<List<char>> { col1, col2 };
+        }
+
     }
 }

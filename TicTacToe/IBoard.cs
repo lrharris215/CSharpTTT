@@ -10,5 +10,7 @@
         bool IsRowAWinner();
 
         bool IsColumnAWinner();
+
+        bool IsDiagonalAWinner();
     }
 }

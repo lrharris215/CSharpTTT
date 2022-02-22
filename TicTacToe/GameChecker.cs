@@ -6,17 +6,22 @@ namespace TicTacToe
         //TODO: add out Player??
         public static bool IsGameWon(IBoard board)
         {
-            return IsHorizontalWin(board) || IsVerticalWin(board);
+            return IsHorizontalWin(board) || IsVerticalWin(board) || IsDiagonalWin(board);
         }
 
         private static bool IsHorizontalWin(IBoard board)
         {
-            return board.IsRowFull();
+            return board.IsRowAWinner();
         }
 
         private static bool IsVerticalWin(IBoard board)
         {
-            return board.IsColumnFull();
+            return board.IsColumnAWinner();
+        }
+
+        private static bool IsDiagonalWin(IBoard board)
+        {
+            return board.IsDiagonalAWinner();
         }
     }
 }

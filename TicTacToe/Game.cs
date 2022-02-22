@@ -28,16 +28,14 @@ namespace TicTacToe
             
             Display.Print(Formatter.FormatBoard(Board));
 
-            int count = 0;
-
-            while (count < 9)
+            while (!IsGameOver())
             {
                 TakeTurn(ActivePlayer);
                 SwitchPlayers();
 
-                count += 1;
             }
-            
+            EndGame();
+            //Console.WriteLine("woof?");
         }
 
         public void TakeTurn(Player player)
@@ -52,5 +50,18 @@ namespace TicTacToe
         {
             ActivePlayer = ActivePlayer == PlayerOne ? PlayerTwo : PlayerOne;
         }
+
+        public void EndGame()
+        {
+            SwitchPlayers();
+            Display.Print($"Congratulations! {ActivePlayer.Name} has won the game!\n");
+        }
+
+        private bool IsGameOver()
+        {
+            return GameChecker.IsGameWon(Board);
+        }
+
+       
     }
 }

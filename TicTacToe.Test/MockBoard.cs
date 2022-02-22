@@ -35,14 +35,19 @@ namespace TicTacToe.Test
         }
 
 
-        public bool IsRowFull()
+        public bool IsRowAWinner()
         {
             return Is3InARow;
         }
 
-        public bool IsColumnFull()
+        public bool IsColumnAWinner()
         {
             return Is3InACol;
+        }
+
+        public bool IsDiagonalAWinner()
+        {
+            return Is3InADiag;
         }
 
         internal void FillRow()

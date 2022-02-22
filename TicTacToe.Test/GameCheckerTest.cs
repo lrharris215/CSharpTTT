@@ -30,5 +30,14 @@ namespace TicTacToe.Test
 
             Assert.True(GameChecker.IsGameWon(board));
         }
+
+        [Fact]
+        public void GameChecker_IsGameWon_ReturnsTrue_IfThreeInADiagonal()
+        {
+            MockBoard board = new MockBoard();
+            board.FillDiag();
+
+            Assert.True(GameChecker.IsGameWon(board));
+        }
     }
 }

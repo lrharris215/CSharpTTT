@@ -36,30 +36,55 @@ namespace TicTacToe.Test
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        public void IsRowFull_ReturnsTrue_IfAnyRows_HaveThreeOfAKind(int rowNumber)
+        public void IsRowAWinner_ReturnsTrue_IfAnyRows_HaveThreeOfAKind(int rowNumber)
         {
 
             FillRow(rowNumber);
             
-            Assert.True(board.IsRowFull());
+            Assert.True(board.IsRowAWinner());
         }
 
         [Fact]
-        public void IsRowRull_ReturnsFalse_IfNoRows_HaveThreeOfAKind()
+        public void IsRowAWinner_ReturnsFalse_IfNoRows_HaveThreeOfAKind()
         {
 
-            Assert.False(board.IsRowFull());
+            Assert.False(board.IsRowAWinner());
         }
 
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        public void IsColumnFull_ReturnsTrue_IfAnyCols_HaveThreeOfAKind(int colNumber)
+        public void IsColumnAWinner_ReturnsTrue_IfAnyCols_HaveThreeOfAKind(int colNumber)
         {
             FillColumn(colNumber);
-            Assert.True(board.IsColumnFull());
+            Assert.True(board.IsColumnAWinner());
         }
+
+        [Fact]
+        public void IsColumnAWinner_ReturnsFalse_IfNoCols_HaveThreeOfAKind()
+        {
+
+            Assert.False(board.IsColumnAWinner());
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        public void IsDiagonalAWinner_ReturnsTrue_IfAnyDiags_HaveThreeOfAKind(int diagNumber)
+        {
+            FillDiagonal(diagNumber);
+            Assert.True(board.IsDiagonalAWinner());
+        }
+
+
+        [Fact]
+        public void IsDiagonalAWinner_ReturnsFalse_IfNoDiags_HaveThreeOfAKind()
+        {
+
+            Assert.False(board.IsDiagonalAWinner());
+        }
+
 
         private void FillRow(int rowNumber)
         {
@@ -102,6 +127,22 @@ namespace TicTacToe.Test
                 board.AddMark(3, 'X');
                 board.AddMark(6, 'X');
                 board.AddMark(9, 'X');
+            }
+        }
+
+        private void FillDiagonal(int diagNumber)
+        {
+            if(diagNumber == 1)
+            {
+                board.AddMark(1, 'X');
+                board.AddMark(5, 'X');
+                board.AddMark(9, 'X');
+            }
+            else if(diagNumber == 2)
+            {
+                board.AddMark(3, 'X');
+                board.AddMark(5, 'X');
+                board.AddMark(7, 'X');
             }
         }
 
