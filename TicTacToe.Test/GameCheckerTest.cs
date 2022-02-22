@@ -8,10 +8,10 @@ namespace TicTacToe.Test
         [Fact]
         public void GameChecker_IsGameWon_ReturnsTrue_IfThreeInARow()
         {
-            //Board board = new MockBoard();
-            //board.fillRow('X');
+            MockBoard board = new MockBoard();
+            board.FillRow();
 
-            //Assert.True(GameChecker.IsGameWon(Board));
+            Assert.True(GameChecker.IsGameWon(board));
         }
     }
 }

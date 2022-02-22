@@ -27,5 +27,46 @@ namespace TicTacToe.Test
             Assert.Equal(board.FindPosition(position), mark);
         }
 
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void IsRowFull_ReturnsTrue_IfAnyRowsHave3OfAKind(int rowNumber)
+        {
+            Board board = new();
+
+            FillRow(board, rowNumber);
+            
+            Assert.True(board.IsRowFull());
+        }
+
+        [Fact]
+        public void IsRowRull_ReturnsFalse_IfNoRowsHave3OfAKind()
+        {
+            Board board = new();
+
+            Assert.False(board.IsRowFull());
+        }
+
+        private void FillRow(IBoard board, int rowNumber)
+        {
+            if(rowNumber == 1)
+            {
+                board.AddMark(1, 'X');
+                board.AddMark(2, 'X');
+                board.AddMark(3, 'X');
+            }else if (rowNumber == 2)
+            {
+                board.AddMark(4, 'X');
+                board.AddMark(5, 'X');
+                board.AddMark(6, 'X');
+            }else if (rowNumber == 3)
+            {
+                board.AddMark(7, 'X');
+                board.AddMark(8, 'X');
+                board.AddMark(9, 'X');
+            }
+        }
+
     } 
 }
