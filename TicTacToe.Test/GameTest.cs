@@ -7,6 +7,8 @@ namespace TicTacToe.Test
 {
     public class GameTest
     {
+
+
         [Theory]
         [InlineData(3, 'M')]
         [InlineData(4, 'Q')]
@@ -37,6 +39,40 @@ namespace TicTacToe.Test
             //Verifies that AddMark has been called once with these arguments
             mockBoard.Verify(mb => mb.AddMark(position, mark), Times.Once());
 
+
+        }
+
+        [Fact]
+        public void ActivePlayer_DefaultsToPlayerOne_OnGameStart()
+        {
+            Mock<Board> mockBoard = new Mock<Board>();
+            Mock<Player> mockPlayer1 = new Mock<Player>();
+            Mock<Player> mockPlayer2 = new Mock<Player>();
+            Mock<Validator> mockValidator = new Mock<Validator>();
+
+            Game game = new(mockBoard.Object, mockValidator.Object, mockPlayer1.Object, mockPlayer2.Object);
+
+            Assert.Same(mockPlayer1.Object, game.ActivePlayer);
+
+        }
+
+        [Fact]
+        public void SwitchPlayers_ChangesActivePlayer_ToOtherPlayer()
+        {
+            Mock<Board> mockBoard = new Mock<Board>();
+            Mock<Player> mockPlayer1 = new Mock<Player>();
+            Mock<Player> mockPlayer2 = new Mock<Player>();
+            Mock<Validator> mockValidator = new Mock<Validator>();
+
+            Game game = new(mockBoard.Object, mockValidator.Object, mockPlayer1.Object, mockPlayer2.Object);
+
+            game.SwitchPlayers();
+
+            Assert.Same(mockPlayer2.Object, game.ActivePlayer);
+
+            game.SwitchPlayers();
+
+            Assert.Same(mockPlayer1.Object, game.ActivePlayer);
 
         }
     }
