@@ -34,6 +34,17 @@ namespace TicTacToe.Test
             return Mark;
         }
 
+
+        public bool IsRowFull()
+        {
+            return Is3InARow;
+        }
+
+        public bool IsColumnFull()
+        {
+            return Is3InACol;
+        }
+
         internal void FillRow()
         {
             Is3InARow = true;
@@ -49,9 +60,5 @@ namespace TicTacToe.Test
             Is3InADiag = true;
         }
 
-        public bool IsRowFull()
-        {
-            return Is3InARow;
-        }
     }
 }

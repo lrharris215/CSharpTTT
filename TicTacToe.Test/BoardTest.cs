@@ -51,6 +51,16 @@ namespace TicTacToe.Test
             Assert.False(board.IsRowFull());
         }
 
+        [Theory]
+        [InlineData(1)]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void IsColumnFull_ReturnsTrue_IfAnyCols_HaveThreeOfAKind(int colNumber)
+        {
+            FillColumn(colNumber);
+            Assert.True(board.IsColumnFull());
+        }
+
         private void FillRow(int rowNumber)
         {
             if(rowNumber == 1)
@@ -69,6 +79,28 @@ namespace TicTacToe.Test
             {
                 board.AddMark(7, 'X');
                 board.AddMark(8, 'X');
+                board.AddMark(9, 'X');
+            }
+        }
+
+        private void FillColumn(int colNumber)
+        {
+            if(colNumber == 1)
+            {
+                board.AddMark(1, 'X');
+                board.AddMark(4, 'X');
+                board.AddMark(7, 'X');
+            }
+            else if(colNumber == 2)
+            {
+                board.AddMark(2, 'X');
+                board.AddMark(5, 'X');
+                board.AddMark(8, 'X');
+            }
+            else if(colNumber == 3)
+            {
+                board.AddMark(3, 'X');
+                board.AddMark(6, 'X');
                 board.AddMark(9, 'X');
             }
         }

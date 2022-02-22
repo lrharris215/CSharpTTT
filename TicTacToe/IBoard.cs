@@ -1,5 +1,4 @@
-﻿using System;
-namespace TicTacToe
+﻿namespace TicTacToe
 {
     public interface IBoard
     {
@@ -8,6 +7,8 @@ namespace TicTacToe
 
         void AddMark(int position, char mark);
 
-        bool IsRowFull();
+        bool IsRowAWinner();
+
+        bool IsColumnAWinner();
     }
 }

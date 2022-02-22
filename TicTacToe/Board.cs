@@ -45,6 +45,19 @@ namespace TicTacToe
             
         }
 
+        public bool IsColumnFull()
+        {
+            List<List<char>> allColumns = FindCols();
+            foreach(List<char> column in allColumns)
+            {
+                if(!column.Any(cell => cell!= column[0]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private List<List<char>> FindRows()
         {
             List<char> row1 = new() { FindPosition(1), FindPosition(2), FindPosition(3) };
@@ -52,6 +65,15 @@ namespace TicTacToe
             List<char> row3 = new() { FindPosition(7), FindPosition(8), FindPosition(9) };
 
             return new List<List<char>> { row1, row2, row3 };
+        }
+
+        private List<List<char>> FindCols()
+        {
+            List<char> col1 = new() { FindPosition(1), FindPosition(4), FindPosition(7) };
+            List<char> col2 = new() { FindPosition(2), FindPosition(5), FindPosition(8) };
+            List<char> col3 = new() { FindPosition(3), FindPosition(6), FindPosition(9) };
+
+            return new List<List<char>> { col1, col2, col3 };
         }
     }
 }
