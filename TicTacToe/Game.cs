@@ -9,9 +9,7 @@ namespace TicTacToe
         private readonly Validator Validator;
 
         public Player ActivePlayer { get; set; }
-        private bool IsGameOver;
 
-        
 
         public Game(Board board, Validator validator, Player playerOne, Player playerTwo)
         {
@@ -21,7 +19,7 @@ namespace TicTacToe
             Validator = validator;
 
             ActivePlayer = PlayerOne;
-            IsGameOver = false;
+            
         }
 
         public void Play()
@@ -30,10 +28,14 @@ namespace TicTacToe
             
             Display.Print(Formatter.FormatBoard(Board));
 
-            while (!IsGameOver)
+            int count = 0;
+
+            while (count < 9)
             {
                 TakeTurn(ActivePlayer);
                 SwitchPlayers();
+
+                count += 1;
             }
             
         }
