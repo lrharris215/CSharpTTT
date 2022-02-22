@@ -18,9 +18,6 @@ namespace TicTacToe.Test
             Mock<Player> mockPlayer = new Mock<Player>();
             Mock<Validator> mockValidator = new Mock<Validator>();
 
-            //For some reason Convert.ToChar() was breaking the test
-            char positionChar = position.ToString().ToCharArray()[0];
-
             mockValidator.Setup(mv => mv.IsValidMove(position.ToString(), out position)).Returns(true);
 
             mockPlayer.Setup(mp => mp.Mark).Returns(mark);
