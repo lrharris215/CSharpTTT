@@ -7,9 +7,10 @@ namespace TicTacToe.Test
 {
     public class GameTest
     {
+
+        Player player1;
+        Player player2;
         MockBoard mockBoard;
-        Mock<Player> mockPlayer1;
-        Mock<Player> mockPlayer2;
         Mock<Validator> mockValidator;
 
         Game game;
@@ -17,23 +18,22 @@ namespace TicTacToe.Test
         public GameTest()
         {
             mockBoard = new MockBoard();
-            mockPlayer1 = new Mock<Player>();
-            mockPlayer2 = new Mock<Player>();
+
+
+            player1 = new Player("Player One", 'X');
+            player2 = new Player("Player Two", 'O');
             mockValidator = new Mock<Validator>();
 
-            game = new Game(mockBoard, mockValidator.Object, mockPlayer1.Object, mockPlayer2.Object);
+            game = new Game(mockBoard, mockValidator.Object, player1, player2);
         }
 
         [Theory]
-        [InlineData(3, 'M')]
-        [InlineData(4, 'Q')]
-        [InlineData(9, 'T')]
-        public void TakeTurn_PlacesAValidMark_OnTheBoard(int position, char mark)
-        {
- 
+        [InlineData(3)]
+        [InlineData(4)]
+        [InlineData(9)]
+        public void TakeTurn_PlacesAValidMark_OnTheBoard(int position)
+        { 
             mockValidator.Setup(mv => mv.IsValidMove(position.ToString(), out position)).Returns(true);
-
-            mockPlayer1.Setup(mp => mp.Mark).Returns(mark);
 
             var input = new StringReader(position.ToString());
             Console.SetIn(input);
@@ -41,7 +41,7 @@ namespace TicTacToe.Test
             var output = new StringWriter();
             Console.SetOut(output);
 
-            game.TakeTurn(mockPlayer1.Object);
+            game.TakeTurn(player1);
 
             //Verifies that AddMark has been called once with these arguments
             Assert.True(mockBoard.HasAddMarkBeenCalled);
@@ -53,7 +53,7 @@ namespace TicTacToe.Test
         public void ActivePlayer_DefaultsToPlayerOne_OnGameCreation()
         {
 
-            Assert.Same(mockPlayer1.Object, game.ActivePlayer);
+            Assert.Same(player1, game.ActivePlayer);
 
         }
 
@@ -63,12 +63,36 @@ namespace TicTacToe.Test
 
             game.SwitchPlayers();
 
-            Assert.Same(mockPlayer2.Object, game.ActivePlayer);
+            Assert.Same(player2, game.ActivePlayer);
 
             game.SwitchPlayers();
 
-            Assert.Same(mockPlayer1.Object, game.ActivePlayer);
+            Assert.Same(player1, game.ActivePlayer);
 
+        }
+
+        [Theory]
+        [InlineData("Player One", 'X')]
+        [InlineData("Player Two", 'O')]
+        public void EndGame_DeclaresWinner_WhenGameIsNotATie(string  playerName, char winnerMark)
+        {
+            var output = new StringWriter();
+            Console.SetOut(output);
+
+            game.EndGame(winnerMark.ToString());
+
+            Assert.Equal(Constants.GameOverWinner(playerName), output.ToString());
+        }
+
+        [Fact]
+        public void EndGame_DeclaresTie_WhenGameIsTie()
+        {
+            var output = new StringWriter();
+            Console.SetOut(output);
+
+            game.EndGame("Tie");
+
+            Assert.Equal(Constants.GameOverTie, output.ToString());
         }
     }
 

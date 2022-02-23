@@ -12,5 +12,12 @@ namespace TicTacToe
             return $"It is {playerName}'s turn! Please enter a number between 1 and 9!\n";
         }
 
+        public static string GameOverTie = "Game over! The game is a tie!\n";
+
+        public static string GameOverWinner(string playerName)
+        {
+            return $"Congratulations! {playerName} has won the game!\n";
+        }
+
     }
 }

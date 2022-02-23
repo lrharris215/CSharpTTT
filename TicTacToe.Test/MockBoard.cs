@@ -37,19 +37,45 @@ namespace TicTacToe.Test
         }
 
 
-        public bool IsRowAWinner()
+        public bool IsRowAWinner(out string winner)
         {
-            return Is3InARow;
+            if (Is3InARow)
+            {
+                winner = "X";
+                return true;
+            }else
+            {
+                winner = null;
+                return false;
+            }
         }
 
-        public bool IsColumnAWinner()
+        public bool IsColumnAWinner(out string winner)
         {
-            return Is3InACol;
+            if (Is3InACol)
+            {
+                winner = "X";
+                return true;
+            }
+            else
+            {
+                winner = null;
+                return false;
+            }
         }
 
-        public bool IsDiagonalAWinner()
+        public bool IsDiagonalAWinner(out string winner)
         {
-            return Is3InADiag;
+            if (Is3InADiag)
+            {
+                winner = "X";
+                return true;
+            }
+            else
+            {
+                winner = null;
+                return false;
+            }
         }
 
         public bool IsFull()

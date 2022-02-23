@@ -28,26 +28,26 @@ namespace TicTacToe
             Cells[position - 1] = mark;
         }
 
-        public bool IsRowAWinner()
+        public bool IsRowAWinner(out string winner)
         {
 
             List<List<char>> allRows = FindRows();
 
-            return IsThreeOfAKind(allRows);
+            return IsThreeOfAKind(allRows, out winner);
             
         }
 
-        public bool IsColumnAWinner()
+        public bool IsColumnAWinner(out string winner)
         {
             List<List<char>> allColumns = FindCols();
-            return IsThreeOfAKind(allColumns);
+            return IsThreeOfAKind(allColumns, out winner);
         }
 
 
-        public bool IsDiagonalAWinner()
+        public bool IsDiagonalAWinner(out string winner)
         {
             List<List<char>> allDiagonals = FindDiagonals();
-            return IsThreeOfAKind(allDiagonals);
+            return IsThreeOfAKind(allDiagonals, out winner);
         }
 
         public bool IsFull()
@@ -59,15 +59,17 @@ namespace TicTacToe
             return false;
         }
 
-        private bool IsThreeOfAKind(List<List<char>> cellSets)
+        private bool IsThreeOfAKind(List<List<char>> cellSets, out string winner)
         {
             foreach(List<char> cellSet in cellSets)
             {
                 if(!cellSet.Any(cell => cell!= cellSet[0]))
                 {
+                    winner = cellSet[0].ToString();
                     return true;
                 }
             }
+            winner = null;
             return false;
         }
 

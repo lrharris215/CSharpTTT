@@ -41,14 +41,14 @@ namespace TicTacToe.Test
 
             FillRow(rowNumber);
             
-            Assert.True(board.IsRowAWinner());
+            Assert.True(board.IsRowAWinner(out _));
         }
 
         [Fact]
         public void IsRowAWinner_ReturnsFalse_IfNoRows_HaveThreeOfAKind()
         {
 
-            Assert.False(board.IsRowAWinner());
+            Assert.False(board.IsRowAWinner(out _));
         }
 
         [Theory]
@@ -58,14 +58,14 @@ namespace TicTacToe.Test
         public void IsColumnAWinner_ReturnsTrue_IfAnyCols_HaveThreeOfAKind(int colNumber)
         {
             FillColumn(colNumber);
-            Assert.True(board.IsColumnAWinner());
+            Assert.True(board.IsColumnAWinner(out _));
         }
 
         [Fact]
         public void IsColumnAWinner_ReturnsFalse_IfNoCols_HaveThreeOfAKind()
         {
 
-            Assert.False(board.IsColumnAWinner());
+            Assert.False(board.IsColumnAWinner(out _));
         }
 
         [Theory]
@@ -74,7 +74,7 @@ namespace TicTacToe.Test
         public void IsDiagonalAWinner_ReturnsTrue_IfAnyDiags_HaveThreeOfAKind(int diagNumber)
         {
             FillDiagonal(diagNumber);
-            Assert.True(board.IsDiagonalAWinner());
+            Assert.True(board.IsDiagonalAWinner(out _));
         }
 
 
@@ -82,7 +82,7 @@ namespace TicTacToe.Test
         public void IsDiagonalAWinner_ReturnsFalse_IfNoDiags_HaveThreeOfAKind()
         {
 
-            Assert.False(board.IsDiagonalAWinner());
+            Assert.False(board.IsDiagonalAWinner(out _));
         }
 
         [Fact]

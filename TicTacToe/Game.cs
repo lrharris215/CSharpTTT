@@ -8,6 +8,8 @@ namespace TicTacToe
         private readonly Player PlayerTwo;
         private readonly Validator Validator;
 
+        private string winner;
+
         public Player ActivePlayer { get; set; }
 
 
@@ -28,14 +30,13 @@ namespace TicTacToe
             
             Display.Print(Formatter.FormatBoard(Board));
 
-            while (!IsGameOver())
+            while (!IsGameOver(out winner))
             {
                 TakeTurn(ActivePlayer);
                 SwitchPlayers();
 
             }
-            EndGame();
-            //Console.WriteLine("woof?");
+            EndGame(winner);
         }
 
         public void TakeTurn(Player player)
@@ -51,16 +52,31 @@ namespace TicTacToe
             ActivePlayer = ActivePlayer == PlayerOne ? PlayerTwo : PlayerOne;
         }
 
-        public void EndGame()
+        public void EndGame(string winnerMark)
         {
-            //TODO: maybe use the out from before to declare winner?
-            SwitchPlayers();
-            Display.Print($"Congratulations! {ActivePlayer.Name} has won the game!\n");
+            if(winnerMark == "Tie")
+            {
+                Display.Print(Constants.GameOverTie);
+            }
+            else
+            {
+               Player winningPlayer = FindWinner(winnerMark);
+               Display.Print(Constants.GameOverWinner(winningPlayer.Name));
+            }  
         }
 
-        private bool IsGameOver()
+        private bool IsGameOver(out string winner)
         {
-            return GameChecker.IsGameTied(Board) || GameChecker.IsGameWon(Board);
+            return GameChecker.IsGameTied(Board, out winner) || GameChecker.IsGameWon(Board, out winner);
+        }
+
+        private Player FindWinner(string winnerMark)
+        {
+            if (PlayerOne.Mark.ToString() == winnerMark)
+            {
+                return PlayerOne;
+            }
+            else return PlayerTwo;
         }
 
        

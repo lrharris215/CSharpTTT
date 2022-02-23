@@ -7,11 +7,11 @@
 
         void AddMark(int position, char mark);
 
-        bool IsRowAWinner();
+        bool IsRowAWinner(out string winner);
 
-        bool IsColumnAWinner();
+        bool IsColumnAWinner(out string winner);
 
-        bool IsDiagonalAWinner();
+        bool IsDiagonalAWinner(out string winner);
 
         bool IsFull();
     }

@@ -3,30 +3,39 @@ namespace TicTacToe
 {
     public class GameChecker
     {
-        //TODO: add out Player??
-        public static bool IsGameWon(IBoard board)
+        //TODO: add out Winner?? Do I need to convert from char? 
+        public static bool IsGameWon(IBoard board, out string winner)
         {
-            return IsHorizontalWin(board) || IsVerticalWin(board) || IsDiagonalWin(board);
+            return IsHorizontalWin(board, out winner) || IsVerticalWin(board, out winner) || IsDiagonalWin(board, out winner);
         }
 
-        public static bool IsGameTied(IBoard board)
+        public static bool IsGameTied(IBoard board, out string winner)
         {
-            return board.IsFull() && !IsGameWon(board);
+
+            if (board.IsFull() && !IsGameWon(board, out _))
+            {
+                winner = "Tie";
+                return true;
+            }else
+            {
+                winner = null;
+                return false;
+            }
         }
 
-        private static bool IsHorizontalWin(IBoard board)
+        private static bool IsHorizontalWin(IBoard board, out string winner)
         {
-            return board.IsRowAWinner();
+            return board.IsRowAWinner(out winner);
         }
 
-        private static bool IsVerticalWin(IBoard board)
+        private static bool IsVerticalWin(IBoard board, out string winner)
         {
-            return board.IsColumnAWinner();
+            return board.IsColumnAWinner(out winner);
         }
 
-        private static bool IsDiagonalWin(IBoard board)
+        private static bool IsDiagonalWin(IBoard board, out string winner)
         {
-            return board.IsDiagonalAWinner();
+            return board.IsDiagonalAWinner(out winner);
         }
     }
 }
