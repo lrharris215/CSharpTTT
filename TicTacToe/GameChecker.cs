@@ -3,7 +3,6 @@ namespace TicTacToe
 {
     public class GameChecker
     {
-        //TODO: add out Winner?? Do I need to convert from char? 
         public static bool IsGameWon(IBoard board, out string winner)
         {
             return IsHorizontalWin(board, out winner) || IsVerticalWin(board, out winner) || IsDiagonalWin(board, out winner);
