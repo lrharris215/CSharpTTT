@@ -3,7 +3,7 @@ namespace TicTacToe
 {
     public class Formatter
     {
-        public static string FormatBoard(Board board)
+        public static string FormatBoard(IBoard board)
         {
             return @$"
              |       |
